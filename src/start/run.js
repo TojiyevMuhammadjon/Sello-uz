@@ -6,15 +6,12 @@ const bootstrapt = async (app) => {
   await sequlize.authenticate({
     logging: false,
   });
-  await sequlize.sync({ alter: true, logging: false, force: true });
+  await sequlize.sync({ alter: true, logging: false });
   app.listen(port, () => {
-    console.log(
-      `- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -`
-    );
-    console.log(`                             Listening on ${port}`);
-    console.log(
-      `- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -`
-    );
+    const decorativeLine = "*".repeat(50);
+    console.log(`\n${decorativeLine}`);
+    console.log(`  🚀 Server is running on port ${port}`);
+    console.log(`${decorativeLine}\n`);
   });
 };
 

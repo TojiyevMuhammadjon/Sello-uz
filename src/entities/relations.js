@@ -26,6 +26,9 @@ const relations = () => {
 
   Users.belongsToMany(Products, { through: "backets" });
   Products.belongsToMany(Users, { through: "backets" });
+
+  // Users.hasOne(Cards, { foreignKey: "card_id" });
+  // Cards.belongsTo(Users, { foreignKey: "card_id" });
 };
 
 module.exports = relations;

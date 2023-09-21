@@ -46,7 +46,7 @@ const register = async (req, res, next) => {
         const verifyCode = Math.floor(Math.random() * 9000) + 1000;
         console.log(verifyCode);
 
-        const time = 90;
+        const time = 40;
 
         await redis.set("codes", JSON.stringify(verifyCode), "EX", time);
         await redis.set("fullname", JSON.stringify(fullname), "EX", time);

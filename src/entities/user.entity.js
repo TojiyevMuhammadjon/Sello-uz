@@ -26,6 +26,10 @@ Users.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    balance: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0,
+    },
   },
   {
     sequelize,
