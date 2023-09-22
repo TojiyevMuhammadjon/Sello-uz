@@ -6,7 +6,7 @@ const Users = require("../../entities/user.entity");
 const Sellers = require("../../entities/seller.entity");
 
 // this is payment method
-const payment = async (req, res) => {
+const payment = async (req, res, next) => {
   try {
     let { amount, id, user_id } = req.body;
 
@@ -37,13 +37,13 @@ const payment = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error);
   }
 };
 
 // this is User payment method
 
-const userPayment = async (req, res) => {
+const userPayment = async (req, res, next) => {
   const { product_id } = req.params;
   const user_id = req.user;
   const t = await sequelize.transaction();
@@ -82,11 +82,9 @@ const userPayment = async (req, res) => {
   } catch (error) {
     // Handle errors and send an error response
     await t.rollback();
-    res.status(500).json({ message: "Payment failed", error: error.message });
+    next(error);
   }
 };
-
-module.exports = userPayment;
 
 module.exports = {
   payment,
