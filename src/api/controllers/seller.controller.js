@@ -47,7 +47,6 @@ const register = async (req, res, next) => {
       logging: false,
     });
 
-    console.log(findUser);
     if (findUser.length > 0) {
       return res.status(409).json({ message: "Student already exists" });
     }
@@ -141,7 +140,6 @@ const login = async (req, res, next) => {
     res.cookie("token", token);
     res.status(201).json({ message: `Welcome`, token: token });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };

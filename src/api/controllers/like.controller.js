@@ -71,7 +71,6 @@ const backetsControl = async (req, res, next) => {
 
     res.status(201).json({ message: "Backet successfully added", newBacket });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -79,7 +78,11 @@ const backetsControl = async (req, res, next) => {
 const getBackets = async (req, res, next) => {
   try {
     const user_id = req.user;
-    const backets = await Backet.findAll({ where: { user_id },include: [Products, Users], logging: false });
+    const backets = await Backet.findAll({
+      where: { user_id },
+      include: [Products, Users],
+      logging: false,
+    });
     res.status(201).json({ message: "Succes", backets });
   } catch (error) {
     next(error);

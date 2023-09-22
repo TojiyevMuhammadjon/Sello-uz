@@ -38,10 +38,9 @@ const register = async (req, res, next) => {
     if (findUser.length > 0) {
       throw new CustomError(404, "User already exists");
     }
-    console.log(findUser.length);
     redis.get("codes", async (err, data) => {
       if (data) {
-        res.status(200).json({message: "Pending  registration"})
+        res.status(200).json({ message: "Pending  registration" });
       } else {
         const verifyCode = Math.floor(Math.random() * 9000) + 1000;
         console.log(verifyCode);
